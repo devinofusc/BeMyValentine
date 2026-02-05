@@ -1,0 +1,135 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(circle at top, #ffd6e7, #fff0f6 45%, #fff);
+  padding: 18px;
+}
+
+/* Default: hide the mobile Valentine card on larger screens */
+.mobile-only { display: none; }
+
+/* Default: show the "open on mobile" message */
+.not-mobile {
+  width: min(520px, 92vw);
+  background: rgba(255,255,255,0.95);
+  border: 2px solid rgba(255,105,180,0.25);
+  border-radius: 24px;
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+.not-mobile h1 {
+  margin: 0 0 10px;
+  font-size: 32px;
+}
+
+.not-mobile p {
+  margin: 8px 0;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* PHONE ONLY (you can tweak breakpoint if you want) */
+@media (max-width: 600px) {
+  .not-mobile { display: none; }
+  .mobile-only { display: block; }
+}
+
+/* Valentine card styling */
+.card {
+  width: min(520px, 92vw);
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid rgba(255, 105, 180, 0.25);
+  border-radius: 24px;
+  padding: 24px 18px;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.hearts {
+  font-size: 22px;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  margin: 8px 0 6px;
+  font-size: 34px;
+}
+
+.subtitle {
+  margin: 0 0 14px;
+  opacity: 0.75;
+  font-size: 15px;
+}
+
+.question {
+  margin: 16px 0 18px;
+  padding: 16px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,105,180,0.14), rgba(255,0,128,0.08));
+  border: 1px solid rgba(255,105,180,0.22);
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.highlight {
+  font-weight: 800;
+  color: #ff2e86;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  position: relative;
+  min-height: 56px;
+}
+
+.btn {
+  border: none;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  user-select: none;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.yes {
+  background: #ff2e86;
+  color: white;
+  box-shadow: 0 10px 18px rgba(255, 46, 134, 0.25);
+}
+
+.no {
+  background: #fff;
+  border: 2px solid rgba(255, 46, 134, 0.35);
+  color: #ff2e86;
+  position: relative;
+}
+
+.message {
+  margin: 10px 0 0;
+  font-size: 16px;
+  font-weight: 650;
+  color: #1f1f1f;
+  min-height: 24px;
+}
+
+.footer {
+  margin-top: 16px;
+  opacity: 0.7;
+}
