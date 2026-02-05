@@ -1,135 +1,131 @@
 * { box-sizing: border-box; }
 
+:root{
+  --pink: #ff2e86;
+  --deep: #b10055;
+  --rose: rgba(255, 46, 134, 0.12);
+  --card: rgba(255, 255, 255, 0.92);
+  --border: rgba(255, 46, 134, 0.22);
+}
+
 body {
   margin: 0;
   min-height: 100vh;
   display: grid;
   place-items: center;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(circle at top, #ffd6e7, #fff0f6 45%, #fff);
-  padding: 18px;
+  padding: 24px;
+  color: #1f1f1f;
+
+  /* Romantic background */
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 46, 134, 0.25), transparent 45%),
+    radial-gradient(circle at 82% 18%, rgba(255, 150, 190, 0.25), transparent 48%),
+    radial-gradient(circle at 55% 92%, rgba(255, 46, 134, 0.18), transparent 52%),
+    linear-gradient(180deg, #fff1f7 0%, #fff 55%, #fff6fb 100%);
 }
 
-/* Default: hide the mobile Valentine card on larger screens */
+/* Soft floating heart “overlay” (pure CSS, no images) */
+body::before {
+  content: "💗  💖  💘  💞  💕  💓";
+  position: fixed;
+  inset: -40px 0 auto 0;
+  height: 140px;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  letter-spacing: 18px;
+  opacity: 0.22;
+  filter: blur(0.2px);
+  pointer-events: none;
+  transform: rotate(-2deg);
+}
+
+/* Subtle sparkles at bottom */
+body::after {
+  content: "✦  ✧  ✦  ✧  ✦  ✧  ✦";
+  position: fixed;
+  inset: auto 0 -10px 0;
+  height: 120px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  letter-spacing: 22px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* --- MOBILE ONLY TOGGLE (kept from your version) --- */
 .mobile-only { display: none; }
 
-/* Default: show the "open on mobile" message */
 .not-mobile {
-  width: min(520px, 92vw);
-  background: rgba(255,255,255,0.95);
-  border: 2px solid rgba(255,105,180,0.25);
-  border-radius: 24px;
-  padding: 26px 22px;
+  width: min(720px, 92vw);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 30px 26px;
   text-align: center;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 22px 55px rgba(0,0,0,0.10);
+  backdrop-filter: blur(8px);
 }
 
 .not-mobile h1 {
   margin: 0 0 10px;
-  font-size: 32px;
+  font-size: clamp(28px, 4vw, 40px);
+  color: var(--deep);
 }
 
 .not-mobile p {
-  margin: 8px 0;
+  margin: 10px 0;
   font-size: 16px;
-  opacity: 0.9;
+  opacity: 0.92;
+  line-height: 1.45;
 }
 
-/* PHONE ONLY (you can tweak breakpoint if you want) */
+/* PHONE ONLY breakpoint — change if you want */
 @media (max-width: 600px) {
   .not-mobile { display: none; }
   .mobile-only { display: block; }
 }
 
-/* Valentine card styling */
+/* --- VALENTINE CARD (webpage-fitted) --- */
 .card {
-  width: min(520px, 92vw);
-  background: rgba(255, 255, 255, 0.92);
-  border: 2px solid rgba(255, 105, 180, 0.25);
-  border-radius: 24px;
-  padding: 24px 18px;
+  width: min(820px, 92vw);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  padding: clamp(22px, 3.6vw, 36px);
   text-align: center;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  box-shadow:
+    0 26px 70px rgba(0,0,0,0.10),
+    0 0 0 8px rgba(255, 46, 134, 0.05);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
+/* Gentle glowing gradient inside card */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 46, 134, 0.18), transparent 45%),
+    radial-gradient(circle at 70% 60%, rgba(255, 150, 190, 0.20), transparent 48%);
+  transform: rotate(6deg);
+  pointer-events: none;
+}
+
+/* Make sure content sits above the glow */
+.card > * { position: relative; }
+
 .hearts {
-  font-size: 22px;
-  letter-spacing: 4px;
+  font-size: 26px;
+  letter-spacing: 8px;
   margin-bottom: 10px;
+  filter: drop-shadow(0 8px 16px rgba(255, 46, 134, 0.12));
 }
 
 h1 {
-  margin: 8px 0 6px;
-  font-size: 34px;
-}
-
-.subtitle {
-  margin: 0 0 14px;
-  opacity: 0.75;
-  font-size: 15px;
-}
-
-.question {
-  margin: 16px 0 18px;
-  padding: 16px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255,105,180,0.14), rgba(255,0,128,0.08));
-  border: 1px solid rgba(255,105,180,0.22);
-  font-size: 20px;
-  line-height: 1.25;
-}
-
-.highlight {
-  font-weight: 800;
-  color: #ff2e86;
-}
-
-.buttons {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-  position: relative;
-  min-height: 56px;
-}
-
-.btn {
-  border: none;
-  padding: 14px 18px;
-  border-radius: 16px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
-  user-select: none;
-}
-
-.btn:active { transform: scale(0.98); }
-
-.yes {
-  background: #ff2e86;
-  color: white;
-  box-shadow: 0 10px 18px rgba(255, 46, 134, 0.25);
-}
-
-.no {
-  background: #fff;
-  border: 2px solid rgba(255, 46, 134, 0.35);
-  color: #ff2e86;
-  position: relative;
-}
-
-.message {
-  margin: 10px 0 0;
-  font-size: 16px;
-  font-weight: 650;
-  color: #1f1f1f;
-  min-height: 24px;
-}
-
-.footer {
-  margin-top: 16px;
-  opacity: 0.7;
-}
+  margin: 10px 0 6px;
+  font-size: clamp(
